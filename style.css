@@ -45,7 +45,7 @@ form input{
     background-color: #F7E1AE;
     border-style: hidden;
     border-radius: 7px;
-    padding: 1rem;
+    padding: 0.8rem;
 }
 
 ::placeholder{
@@ -61,5 +61,6 @@ form .submit{
 }
 
 a:link, a:visited, a:hover, a:active{
+    text-decoration: none;
     color: #617A55;
 }
