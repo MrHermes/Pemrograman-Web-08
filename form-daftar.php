@@ -4,35 +4,33 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Formulir Pendaftaran Siswa Baru | SMK Coding</title>
-    <link rel="stylesheet" href="css/lmao.css" />
+    <link rel="stylesheet" href="style.css" />
+    <title>Silahturami Online</title>
   </head>
   <body>
-    <div class="login-page">
-      <div class="form">
-        <h2>Formulir Pendaftaran Siswa Baru</h2>
-        <form action="proses-pendaftaran.php" method="POST" class="login-form">
-          <input type="text" placeholder="Nama Lengkap" name="nama" />
-          <input type="text" placeholder="Alamat" name="alamat" />
-          <h3>Jenis Kelamin</h3>
-          <label for="jenis_kelamin" style="display: flex; padding-bottom: 10px;">
-            <input type="radio" name="jenis_kelamin" value="laki-laki"> Laki-laki
-            <input type="radio" name="jenis_kelamin" value="perempuan"> Perempuan
-          </label>
-          <p>
-          <h3 for="agama">Agama</h3>
-            <select name="agama">
-                <option>Islam</option>
-                <option>Kristen</option>
-                <option>Hindu</option>
-                <option>Budha</option>
-                <option>Atheis</option>
-            </select>
-          </p>
-          <input type="text" placeholder="Sekolah Asal" name="sekolah_asal" />
-          <button type="submit" value="Daftar" name="daftar">Daftar</button>
+    <main>
+      <div class="form-daftar">
+        <h1>Daftar<br />Silahturami Online</h1>
+        <form action="proses-pendaftaran.php" method="POST">
+          <label for="email">Email</label>
+          <input type="text" placeholder="Masukkan Email" name="email" />
+          
+          <label for="password">Password</label>
+          <input type="password" placeholder="Masukkan Kata Sandi" name="password" />
+                    
+          <label for="name">Nama Lengkap</label>
+          <input type="text" placeholder="Masukkan Nama Lengkap" name="name" required/>
+
+          <label for="no_telp">No. Handphone</label>
+          <input type="text" placeholder="Masukkan Nomor Handphone" name="no_telp" required/>
+
+          <label for="address">Alamat Rumah</label>
+          <textarea name="address" placeholder="Masukkan Alamat Rumah"></textarea>
+          
+          <input class="submit" type="submit" value="Daftar" name="daftar" />
         </form>
+        <h6>Sudah menjadi warga Silahturami Online? <a href="./form-daftar.php">Masuk</a></h6>
       </div>
-    </div>
+    </main>
   </body>
 </html>

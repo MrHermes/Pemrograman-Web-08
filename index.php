@@ -13,10 +13,10 @@
         <h1>Masuk<br />Silahturami Online</h1>
         <form>
           <label for="email">Email</label>
-          <input type="email" name="email" placeholder="Masukan Email" />
+          <input type="email" name="email" placeholder="Masukkan Email" />
 
           <label for="password">Kata Sandi</label>
-          <input type="password" name="password" placeholder="Masukan Kata Sandi" />
+          <input type="password" name="password" placeholder="Masukkan Kata Sandi" />
 
           <input class="submit" type="submit" value="Masuk" name="masuk" />
         </form>
