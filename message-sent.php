@@ -9,22 +9,16 @@
   </head>
   <body>
     <main>
-      <div class="message">
+      <form class="message">
         <h1>Kirim<br />Silahturami Online</h1>
-        <div class="message-detail">
-          <h5>Pesan</h5>
-          <div class="message-detail-box">
-              <!-- fetch data here -->
-              <p>Selamat Hari Raya Idul Fitri, Mohon Maaf Lahir dan Batin </p>
-          </div>
-          <h5>Balasan Kepala Daerah</h5>
-          <div class="message-detail-box">
-              <!-- fetch data here -->
-              <!-- kalo belum ada balasan, nanti dibedain warnanya ?-->
-              <p>Selamat Hari Raya Idul Fitri, Mohon Maaf Lahir dan Batin</p>
-          </div>
-        </div>
-      </div>
+        <label for="pesan">Pesan</label>
+        <textarea name="pesan" readonly>
+Selamat Hari Raya Idul Fitri, Mohon Maaf Lahir dan Batin</textarea
+        >
+
+        <label for="balasan">Balasan Kepala Daerah</label>
+        <textarea name="balasan" readonly placeholder="Belum terdapat balasan dari kepala daerah"></textarea>
+      </form>
     </main>
   </body>
 </html>

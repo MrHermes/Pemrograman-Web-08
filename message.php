@@ -13,7 +13,7 @@
         <h1>Kirim<br />Silahturami Online</h1>
         <form>
           <label for="pesan">Pesan</label>
-          <textarea name="pesan" placeholder="Tulis pesan kepada kepala daerah disini"></textarea>
+          <textarea name="pesan" rows="5" placeholder="Tulis pesan kepada kepala daerah disini"></textarea>
 
           <input class="submit" type="submit" value="Kirim Pesan" name="kirim-pesan" />
         </form>

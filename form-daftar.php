@@ -1,3 +1,9 @@
+<?php
+
+include("config.php");
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -29,7 +35,7 @@
           
           <input class="submit" type="submit" value="Daftar" name="daftar" />
         </form>
-        <h6>Sudah menjadi warga Silahturami Online? <a href="./form-daftar.php">Masuk</a></h6>
+        <h6>Sudah menjadi warga Silahturami Online? <a href="./index.php">Masuk</a></h6>
       </div>
     </main>
   </body>
