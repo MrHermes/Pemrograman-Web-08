@@ -34,7 +34,7 @@ $modal_classname = isset($_GET['id']) ? "modal-open" : "";
         <tbody>
           <!-- Fetch Data Here -->
           <?php
-            $sql = "SELECT p.id, u.name, u.no_telp, u.address, p.pesan, p.balasan FROM pesan p JOIN user u ON p.user_id = u.id";
+            $sql = "SELECT p.id, u.name, u.no_telp, u.address, p.created_at, p.pesan, p.balasan FROM pesan p JOIN user u ON p.user_id = u.id";
             $query = mysqli_query($db, $sql);
 
             while ($pesan = mysqli_fetch_array($query)) {
@@ -43,7 +43,7 @@ $modal_classname = isset($_GET['id']) ? "modal-open" : "";
                 echo   "<td>".$pesan['name']."</td>";
                 echo   "<td>".$pesan['no_telp']."</td>";
                 echo   "<td>".$pesan['address']."</td>";
-                echo   "<td>2023-04-29 02:00</td>";
+                echo   "<td>".$pesan['created_at']."</td>";
                 echo   "<td>";
                 echo   $pesan['balasan'] ? "<div class='responded'>Sudah Dibalas</div>" : "<div class='not-responded'>Belum Dibalas</div>";
                 echo   "</td>";
