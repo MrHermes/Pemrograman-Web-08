@@ -10,7 +10,9 @@ CREATE TABLE user (
     address varchar(128)  NOT NULL,
     email varchar(128)  NOT NULL,
     password varchar(128)  NOT NULL,
-    is_admin bool  NOT NULL
+    is_admin bool  NOT NULL,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ,
+    updated_at DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 );
 
 -- Table: pesan
@@ -18,7 +20,9 @@ CREATE TABLE pesan (
     id int  NOT NULL AUTO_INCREMENT PRIMARY KEY,
     user_id int  NOT NULL,
     pesan varchar(128)  NOT NULL,
-    balasan varchar(128)  NULL
+    balasan varchar(128)  NULL,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ,
+    updated_at DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 );
 
 -- foreign keys

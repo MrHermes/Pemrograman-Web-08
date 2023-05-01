@@ -14,8 +14,13 @@ if(isset($_POST['daftar'])){
 
     // buat query
     $cek_user = mysqli_num_rows(mysqli_query($db, "SELECT * FROM user WHERE email = '$email'"));
-    $sql = "INSERT INTO user (email, password, name, no_telp, address) VALUE ('$email', '$password', '$name', '$no_telp', '$address')";
-    $query = mysqli_query($db, $sql);
+    if ($cek_user == 0) {
+        $sql = "INSERT INTO user (email, password, name, no_telp, address) VALUE ('$email', '$password', '$name', '$no_telp', '$address')";
+        $query = mysqli_query($db, $sql);
+    }
+    else {
+        header('Location: form-daftar.php?status=gagal');
+    }
 
     // apakah query simpan berhasil?
     if($query && $cek_user == 0) {

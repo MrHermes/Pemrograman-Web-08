@@ -1,3 +1,9 @@
+<?php
+
+include("config.php");
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -10,14 +16,22 @@
   <body>
     <main>
       <form class="message">
-        <h1>Kirim<br />Silahturami Online</h1>
-        <label for="pesan">Pesan</label>
-        <textarea name="pesan" readonly>
-Selamat Hari Raya Idul Fitri, Mohon Maaf Lahir dan Batin</textarea
-        >
-
-        <label for="balasan">Balasan Kepala Daerah</label>
-        <textarea name="balasan" readonly placeholder="Belum terdapat balasan dari kepala daerah"></textarea>
+        <?php
+          $user_id = $_GET['user_id'];
+          $sql = "SELECT * FROM pesan WHERE user_id = '$user_id'";
+          $query = mysqli_query($db, $sql);
+          while($pesan_array = mysqli_fetch_array($query)){
+              echo "<h1>Kirim<br />Silahturami Online</h1>";
+              echo "<label for='pesan'>Pesan</label>";
+              echo "<textarea name='pesan' readonly>".$pesan_array['pesan']."</textarea>";
+              echo "<label for='balasan'>Balasan Kepala Daerah</label>";
+              if ($pesan_array['balasan'] == NULL) {
+                echo "<textarea name='balasan' readonly placeholder='Belum terdapat balasan dari kepala daerah'></textarea>";
+              } else {
+                echo "<textarea name='balasan' readonly>".$pesan_array['balasan']."</textarea>";
+              }
+          }
+        ?>
       </form>
     </main>
   </body>

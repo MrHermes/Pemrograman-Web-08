@@ -1,3 +1,9 @@
+<?php
+
+include("config.php");
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -11,7 +17,8 @@
     <main>
       <div class="message">
         <h1>Kirim<br />Silahturami Online</h1>
-        <form>
+        <form action="proses-kirim-pesan.php" method="POST">
+          <input type="hidden" name="user_id" value="<?php echo $_GET['user_id']; ?>"/>
           <label for="pesan">Pesan</label>
           <textarea name="pesan" rows="5" placeholder="Tulis pesan kepada kepala daerah disini"></textarea>
 
