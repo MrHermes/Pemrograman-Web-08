@@ -33,80 +33,69 @@ $modal_classname = isset($_GET['id']) ? "modal-open" : "";
         </thead>
         <tbody>
           <!-- Fetch Data Here -->
-          <tr>
-            <td>1</td>
-            <td>Muhammad Ersya Vinorian</td>
-            <td>081234567890</td>
-            <td>
-              Jl. Perumahan Puncak Nirwana Blok X No. 12 Kecamatan Sukolilo
-              aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
-            </td>
-            <td>2023-04-29 02:00</td>
-            <td>
-              <div class="responded">Sudah Dibalas</div>
-            </td>
-            <td>
-              <form method="get">
-                <button
-                  name="id"
-                  type="submit"
-                  value="id"
-                  class="overview"
-                  onclick="showModal()"
-                >
-                  Lihat Pesan
-                </button>
-              </form>
-            </td>
-          </tr>
-          <tr>
-            <td>1</td>
-            <td>Muhammad Ersya Vinorian</td>
-            <td>081234567890</td>
-            <td>
-              Jl. Perumahan Puncak Nirwana Blok X No. 12 Kecamatan Sukolilo
-              aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
-            </td>
-            <td>2023-04-29 02:00</td>
-            <td>
-              <div class="responded">Sudah Dibalas</div>
-            </td>
-            <td>
-              <form method="get">
-                <button
-                  name="id"
-                  type="submit"
-                  value="1"
-                  class="overview"
-                  onclick="showModal()"
-                >
-                  Lihat Pesan
-                </button>
-              </form>
-            </td>
-          </tr>
+          <?php
+            $sql = "SELECT p.id, u.name, u.no_telp, u.address, p.pesan, p.balasan FROM pesan p JOIN user u ON p.user_id = u.id";
+            $query = mysqli_query($db, $sql);
+
+            while ($pesan = mysqli_fetch_array($query)) {
+                echo "<tr>";
+                echo   "<td>".$pesan['id']."</td>";
+                echo   "<td>".$pesan['name']."</td>";
+                echo   "<td>".$pesan['no_telp']."</td>";
+                echo   "<td>".$pesan['address']."</td>";
+                echo   "<td>2023-04-29 02:00</td>";
+                echo   "<td>";
+                echo   $pesan['balasan'] ? "<div class='responded'>Sudah Dibalas</div>" : "<div class='not-responded'>Belum Dibalas</div>";
+                echo   "</td>";
+                echo   "<td>";
+                echo     "<form method='GET'>";
+                echo       "<button name='id' type='submit' value='".$pesan['id']."' class='overview' onclick='showModal()'>";
+                echo         "Lihat Pesan";
+                echo       "</button>";
+                echo     "</form>";
+                echo   "</td>";
+                echo "</tr>";
+            }
+          ?>
         </tbody>
       </table>
+      <?php if(isset($_GET['status'])): ?>
+            <?php
+                if($_GET['status'] == 'sukses'){
+                    echo "<script type='text/javascript'>alert('Berhasail mengirim balasan');</script>";
+                } else {
+                    echo "<script type='text/javascript'>alert('Balasan tidak boleh kosong');</script>";
+                }
+            ?>
+         <?php endif; ?>
     </div>
 
     <div class="modal <?php echo $modal_classname ?>" id="modal">
-      <form class="message-overview" method="post">
-        <!-- Fetch Data Here -->
-        <h2>Pesan Dari<br />Muhammad Ersya Vinorian</h2>
+      <form class="message-overview" action='proses-balas.php' method="POST">
+        <?php if(isset($_GET['id'])): ?>
+            <?php
+                $id = $_GET['id'];
+                $sql = "SELECT p.id, u.name, p.pesan, p.balasan FROM pesan p JOIN user u ON p.user_id = u.id WHERE p.id = $id";
+                $query = mysqli_query($db, $sql);
+                $pesan = mysqli_fetch_assoc($query);        
+            ?>
 
-        <label for="pesan">Pesan</label>
-        <textarea name="pesan" readonly>
-Selamat Hari Raya Idul Fitri, Mohon Maaf Lahir dan Batin</textarea
-        >
+            <h2>Pesan Dari<br /><?php echo $pesan['name'] ?></h2>
 
-        <label for="balasan">Balasan</label>
-        <textarea name="balasan" placeholder="Tulis balasan di sini"></textarea>
+            <input type="hidden" name="id" value="<?php echo $pesan['id'] ?>" />
+
+            <label for="pesan">Pesan</label>
+            <textarea name="pesan" readonly><?php echo $pesan['pesan'] ?></textarea>
+
+            <label for="balasan">Balasan</label>
+            <textarea name="balasan" placeholder="Tulis balasan di sini"><?php echo $pesan['balasan'] ?></textarea>
+        <?php endif; ?>
 
         <div class="message-detail-button">
           <button class="cancel" type="button" onclick="closeModal()">
             Batal
           </button>
-          <button class="send" type="submit">Kirim Balasan</button>
+          <input class="send" type="submit" value='Kirim Balasan' name='balas' />
         </div>
       </form>
     </div>
