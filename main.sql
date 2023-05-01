@@ -19,7 +19,6 @@ CREATE TABLE user (
 CREATE TABLE pesan (
     id int  NOT NULL AUTO_INCREMENT PRIMARY KEY,
     user_id int  NOT NULL,
-    created_at datetime NOT NULL,
     pesan varchar(128)  NOT NULL,
     balasan varchar(128)  NULL,
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ,
