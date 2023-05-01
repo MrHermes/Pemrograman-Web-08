@@ -3,23 +3,26 @@
 include("config.php");
 
 // cek apakah tombol daftar sudah diklik atau blum?
-if(isset($_POST['daftar'])){
+if(isset($_POST['masuk'])){
 
     // ambil data dari formulir
     $email = $_POST['email'];
     $password = $_POST['password'];
-    $name = $_POST['name'];
-    $no_telp = $_POST['no_telp'];
-    $address = $_POST['address']; 
 
     // buat query
-    $sql = "INSERT INTO user (email, password, name, no_telp, address) VALUE ('$email', '$password', '$name', '$no_telp', '$address')";
+    $sql = "SELECT * FROM user WHERE email = '$email' AND password = '$password'";
     $query = mysqli_query($db, $sql);
-
+    
     // apakah query simpan berhasil?
-    if( $query ) {
-        // kalau berhasil alihkan ke halaman index.php dengan status=sukses
-        header('Location: index.php?status=sukses');
+    if($query) {
+        $cek = mysqli_num_rows($query);
+        if ($cek > 0) {
+            // kalau berhasil alihkan ke halaman index.php dengan status=sukses
+            header('Location: index.php?status=sukses');
+        }
+        else {
+            header('Location: index.php?status=gagal');
+        }
     } else {
         // kalau gagal alihkan ke halaman indek.php dengan status=gagal
         header('Location: index.php?status=gagal');

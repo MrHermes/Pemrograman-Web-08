@@ -17,7 +17,7 @@ include("config.php");
     <main>
       <div class="login">
         <h1>Masuk<br />Silahturami Online</h1>
-        <form>
+        <form action="proses-login.php" method="POST">
           <label for="email">Email</label>
           <input type="email" name="email" placeholder="Masukkan Email" />
 
