@@ -34,6 +34,15 @@ include("config.php");
           <textarea name="address" placeholder="Masukkan Alamat Rumah"></textarea>
           
           <input class="submit" type="submit" value="Daftar" name="daftar" />
+          <?php if(isset($_GET['status'])): ?>
+            <p>
+                <?php
+                    if($_GET['status'] == 'gagal'){
+                      echo "<script type='text/javascript'>alert('Pendaftaran gagal');</script>";
+                    }
+                ?>
+            </p>
+          <?php endif; ?>
         </form>
         <h6>Sudah menjadi warga Silahturami Online? <a href="./index.php">Masuk</a></h6>
       </div>

@@ -17,7 +17,7 @@ include("config.php");
     <main>
       <div class="login">
         <h1>Masuk<br />Silahturami Online</h1>
-        <form>
+        <form action="proses-login.php" method="POST">
           <label for="email">Email</label>
           <input type="email" name="email" placeholder="Masukkan Email" />
 
@@ -25,6 +25,17 @@ include("config.php");
           <input type="password" name="password" placeholder="Masukkan Kata Sandi" />
 
           <input class="submit" type="submit" value="Masuk" name="masuk" />
+          <?php if(isset($_GET['status'])): ?>
+            <p>
+                <?php
+                    if($_GET['status'] == 'sukses'){
+                      echo "<script type='text/javascript'>alert('Berhasail daftar');</script>";
+                    } else {
+                      echo "<script type='text/javascript'>alert('Email atau password salah');</script>";
+                    }
+                ?>
+            </p>
+         <?php endif; ?>
         </form>
         <h6>Warga baru Silahturami Online? <a href="./form-daftar.php">Daftar</a></h6>
       </div>

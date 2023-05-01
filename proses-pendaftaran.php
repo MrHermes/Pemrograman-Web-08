@@ -6,23 +6,24 @@ include("config.php");
 if(isset($_POST['daftar'])){
 
     // ambil data dari formulir
-    $nama = $_POST['nama'];
-    $alamat = $_POST['alamat'];
-    $jk = $_POST['jenis_kelamin'];
-    $agama = $_POST['agama'];
-    $sekolah = $_POST['sekolah_asal'];
+    $email = $_POST['email'];
+    $password = $_POST['password'];
+    $name = $_POST['name'];
+    $no_telp = $_POST['no_telp'];
+    $address = $_POST['address']; 
 
     // buat query
-    $sql = "INSERT INTO calon_siswa (nama, alamat, jenis_kelamin, agama, sekolah_asal) VALUE ('$nama', '$alamat', '$jk', '$agama', '$sekolah')";
+    $cek_user = mysqli_num_rows(mysqli_query($db, "SELECT * FROM user WHERE email = '$email'"));
+    $sql = "INSERT INTO user (email, password, name, no_telp, address) VALUE ('$email', '$password', '$name', '$no_telp', '$address')";
     $query = mysqli_query($db, $sql);
 
     // apakah query simpan berhasil?
-    if( $query ) {
+    if($query && $cek_user == 0) {
         // kalau berhasil alihkan ke halaman index.php dengan status=sukses
         header('Location: index.php?status=sukses');
     } else {
         // kalau gagal alihkan ke halaman indek.php dengan status=gagal
-        header('Location: index.php?status=gagal');
+        header('Location: form-daftar.php?status=gagal');
     }
 
 
